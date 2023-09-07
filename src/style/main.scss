@@ -1,0 +1,151 @@
+$graytext: #7B7B7B;
+$orange: #FE5F1E;
+$selectorgray: #F3F3F3;
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-family: sans-serif;
+}
+
+// Import ------------------
+
+@import '_button.scss';
+
+// ------------------------
+
+html {
+    font-size: 14px;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+header {
+    padding: 30px;
+
+    .container {
+        justify-content: space-between;
+
+        .logo {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+
+            img {
+                height: 50px;
+                width: 50px;
+                object-fit: contain;
+            }
+
+            .text {
+                display: flex;
+                flex-direction: column;
+                gap: 1px;
+
+                .name {
+                    font-size: 1.4rem;
+                    font-weight: 800;
+                    letter-spacing: 0.24px;
+                    text-transform: uppercase
+                }
+
+                .description {
+                    color: $graytext;
+                }
+            }
+        }
+    }
+}
+
+.pizza-cart {
+    display: flex;
+    flex-direction: column;
+
+    font-size: 1.3rem;
+    font-weight: 700;
+
+    .img {
+        width: 260px;
+        height: 260px;
+    }
+
+    .name {
+        text-align: center;
+        padding-bottom: 15px;
+        letter-spacing: 0.2px;
+    }
+
+    .price-block {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .selector {
+        padding: 7px 15px;
+        margin: 0 0 15px;
+        background-color: $selectorgray;
+        border-radius: 16px;
+        box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.04);
+
+        .size,
+        .type {
+            position: relative;
+            display: flex;
+            // justify-content: space-between;
+            // justify-content: space-around;
+
+            span.window {
+                z-index: 0;
+                position: absolute;
+                // left: 5,85,170
+                display: inline-block;
+                background-color: white;
+                border: 1px solid #ffffff00;
+                border-radius: 5px;
+                box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.04);
+                top: -3px;
+                width: 30%;
+                height: calc(100% + 6px);
+
+                transition: left ease-in-out .4s;
+            }
+
+            label {
+                width: 33.333%;
+                z-index: 1;
+                text-align: center;
+                // display: inline-block;
+                cursor: pointer;
+
+                input {
+                    display: none;
+                }
+
+                font-size: 1.1rem;
+                font-weight: 700;
+                letter-spacing: 0.21px;
+                // text-align: center;
+            }
+        }
+    }
+}
+
+#menu {
+
+    .container {
+        flex-wrap: wrap;
+    }
+
+    .pizza-cart {
+        width: 25%;
+        padding: 20px;
+    }
+}

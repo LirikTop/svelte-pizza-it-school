@@ -5,6 +5,7 @@ import terser from '@rollup/plugin-terser';
 import resolve from '@rollup/plugin-node-resolve';
 import livereload from 'rollup-plugin-livereload';
 import css from 'rollup-plugin-css-only';
+import scss from 'rollup-plugin-scss';
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -43,6 +44,12 @@ export default {
 				// enable run-time checks when not in production
 				dev: !production
 			}
+		}),
+		scss({
+			include: ["/**/*.css", "/**/*.scss"],
+			fileName: 'bundle.css',
+			failOnError: true,
+			import: ("sass")
 		}),
 		// we'll extract any component CSS out into
 		// a separate file - better for performance
