@@ -39,7 +39,7 @@
                     name="size"
                     value={item.value}
                 />
-                {item.name}
+                {item.name} cm
             </label>
         {/each}
     </div>

@@ -1,20 +1,38 @@
 <script>
+    import { onMount } from "svelte";
     import PizzaSiizeSelector from "./PizzaSiizeSelector.svelte";
 
     export let name;
-    export let image;
+    export let imageUrl;
     export let price;
 
-    export let size = [];
+    export let sizes = [];
+
+    let formatedSize = [];
+
+    onMount(function () {
+        if (typeof sizes[0] == "object") {
+            formatedSize = sizes;
+        } else {
+            formatedSize = sizes.map((fn) => {
+                return {
+                    name: fn,
+                    value: fn,
+                };
+            });
+        }
+    });
 </script>
 
 <div class="pizza-cart">
     <div class="img">
-        <img src={image} alt="jpg" />
+        <img src={imageUrl} alt="jpg" />
     </div>
     <div class="name">{name}</div>
 
-    <PizzaSiizeSelector size={size}/>
+    {#if formatedSize.length > 0}
+        <PizzaSiizeSelector size={formatedSize} />
+    {/if}
 
     <div class="price-block">
         <div class="price">від {price}грн</div>
