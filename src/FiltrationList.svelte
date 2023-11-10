@@ -5,15 +5,15 @@
 </script>
 
 <div class="filter-list">
-    {#each arrayList as item}
+    {#each arrayList as filter}
         <label>
             <input
                 type="radio"
                 name="filter"
-                value={item.value}
+                value={filter.value}
                 bind:group={selectFilter}
             />
-            <span class="btn black">{item.name}</span>
+            <span class="btn black">{filter.name}</span>
         </label>
     {/each}
 </div>

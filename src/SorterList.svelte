@@ -1,21 +1,22 @@
 <script>
     import { createEventDispatcher } from "svelte";
     import { fade } from "svelte/transition";
+    import { clickOutside } from "./directive/clickOutside.js";
 
     let dispatcher = createEventDispatcher();
 
     let sorterList = [
         {
             name: "популярність",
-            val: 1,
+            val: 0,
         },
         {
             name: "ціна",
-            val: 2,
+            val: 1,
         },
         {
             name: "алфавіт",
-            val: 3,
+            val: 2,
         },
     ];
 
@@ -34,7 +35,13 @@
     }
 </script>
 
-<div class="sorter-list">
+<div
+    class="sorter-list"
+    use:clickOutside
+    on:click-outside={() => {
+        openList = false;
+    }}
+>
     <div class="selected">
         <!-- svelte-ignore a11y-click-events-have-key-events -->
         сортувати за:
@@ -55,7 +62,7 @@
                         class:active={selectSort === index}
                         on:click={() => {
                             sendSelectSort(index);
-                            selectName = sort.name;
+                            // selectName = sort.name;
                         }}
                     >
                         {sort.name}

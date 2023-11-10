@@ -3,7 +3,7 @@
 
     export let size = [];
 
-    let selectedValue = "1";
+    export let selectedValue = "1";
 
     $: windowPosition = getPosition(selectedValue);
 
