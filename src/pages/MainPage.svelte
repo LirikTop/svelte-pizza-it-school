@@ -4,10 +4,11 @@
 	import SorterList from "../SorterList.svelte";
 	import PizzaCart from "../PizzaCart.svelte";
 	import { onMount } from "svelte";
-    import FloatingComponent from "../FloatingComponent.svelte";
+	import FloatingComponent from "../FloatingComponent.svelte";
 
-	// let url = "http://localhost:3000/pizzas";
-	let url = "/.netlify/functions/db";
+	let url = "http://localhost:3000/pizzas";
+	// let url = "https://raw.githubusercontent.com/LirikTop/Json_pizza/main/db.json";
+	// let url = "/.netlify/functions/db";
 
 	let arrayPizza = [];
 	let arrayFilter = [
@@ -44,6 +45,7 @@
 	function updatePizzas(filter, sort) {
 		axios({
 			method: "get",
+			dataType: "json",
 			url: url,
 		})
 			.then((response) => {

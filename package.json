@@ -4,10 +4,10 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "npm-run-all --parallel dev:app dev:server",
-    "dev:app": "rollup -c -w",
-    "dev:server": "json-server --watch ./public/db.json",
+
     "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "server": "json-server ./public/db.json",
     "start": "sirv public --no-clear"
   },
   "devDependencies": {
