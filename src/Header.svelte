@@ -23,7 +23,7 @@
     <div class="container">
         <div class="logo">
             <div class="img">
-                <a href="#header"><img src="/img/logo.png" alt="logo.png" /></a>
+                <a href="/"><img src="/img/logo.png" alt="logo.png" /></a>
             </div>
             <div class="text">
                 <div class="name">Svelte pizza</div>

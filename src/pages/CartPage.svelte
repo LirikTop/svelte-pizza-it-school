@@ -1,10 +1,13 @@
 <script>
     import { link } from "svelte-spa-router";
     import CartComponent from "../CartComponent.svelte";
+    import DeliveryForm from "../DeliveryForm.svelte";
     import { cart } from "../store/store.js";
     import { onDestroy } from "svelte";
 
     let cartList;
+    let showDeliveryForm = false; // нова змінна стану для відображення форми доставки
+
     let unsub = cart.subscribe((value) => {
         cartList = value;
     });
@@ -12,7 +15,7 @@
     function updatePizzaCart(name, size, count) {
         if (count > 0) {
             let index = cartList.findIndex(
-                (fn) => fn.name == name && fn.size == size
+                (fn) => fn.name == name && fn.size == size,
             );
 
             if (index >= 0) {
@@ -21,11 +24,19 @@
             }
         } else {
             let newArray = cartList.filter(
-                (fn) => fn.name != name && fn.name != size
+                (fn) => fn.name != name || fn.size != size,
             );
             cart.set(newArray);
-        };
-        localStorage.setItem('pizzaCart', JSON.stringify(cartList))
+        }
+        localStorage.setItem("pizzaCart", JSON.stringify(cartList));
+    }
+
+    function openDeliveryForm() {
+        showDeliveryForm = true; // відкрити форму доставки
+    }
+
+    function closeDeliveryForm() {
+        showDeliveryForm = false; // закрити форму доставки
     }
 
     onDestroy(unsub);
@@ -56,7 +67,7 @@
                             updatePizzaCart(
                                 pizza.name,
                                 pizza.size,
-                                e.detail.count
+                                e.detail.count,
                             );
                         }}
                         on:delete={() => {
@@ -67,9 +78,15 @@
             </div>
             <div class="button">
                 <a href="/" class="btn black" use:link>Переглянути меню</a>
-                <button class="btn orange"> Оплатити замовлення </button>
+                <button class="btn orange" on:click={openDeliveryForm}>
+                    Оплатити замовлення
+                </button>
             </div>
         </div>
+        {#if showDeliveryForm}
+            <DeliveryForm on:close={closeDeliveryForm} />
+            <!-- форма доставки -->
+        {/if}
     {:else}
         <div class="container">
             <div class="title">Корзина пуста 💔</div>

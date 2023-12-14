@@ -20,6 +20,7 @@
     "svelte": "^3.55.0"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.5.1",
     "axios": "^1.5.0",
     "json-server": "^0.17.3",
     "rollup-plugin-scss": "^4.0.0",

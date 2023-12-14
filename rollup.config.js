@@ -46,10 +46,10 @@ export default {
 			}
 		}),
 		scss({
-			include: ["/**/*.css", "/**/*.scss"],
-			fileName: 'bundle.css',
-			failOnError: true,
-			import: ("sass")
+			include: ["/**/*.css", "/**/*.scss"], // Які файли буде білдити scss
+			fileName: 'bundle.css', // В який файл треба білдити
+			failOnError: true, // Якщо щось неправильно написано, видитись не буде
+			import: ("sass") // Використовуй препроцесор sass
 		}),
 		// we'll extract any component CSS out into
 		// a separate file - better for performance
