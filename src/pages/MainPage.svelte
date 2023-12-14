@@ -6,7 +6,8 @@
 	import { onMount } from "svelte";
     import FloatingComponent from "../FloatingComponent.svelte";
 
-	let url = "http://localhost:3000/pizzas";
+	// let url = "http://localhost:3000/pizzas";
+	let url = "/.netlify/functions/db";
 
 	let arrayPizza = [];
 	let arrayFilter = [
