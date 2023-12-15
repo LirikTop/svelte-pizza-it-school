@@ -5,8 +5,18 @@
     let openList = false;
 
     let themes = [
-        { id: "light", icon: "fa-brands fa-telegram", label: "Telegram" },
-        { id: "dark", icon: "fa-solid fa-phone", label: "Phone" },
+        {
+            id: "light",
+            icon: "fa-brands fa-telegram",
+            label: "Telegram",
+            link: "https://t.me/The_Lirik",
+        },
+        {
+            id: "dark",
+            icon: "fa-solid fa-phone",
+            label: "Phone",
+            link: "tel:+380639594029",
+        },
     ];
 </script>
 
@@ -36,11 +46,11 @@ on:mouseleave={toggleHover} -->
         transition:fade={{ duration: 200 }}
     >
         <ul class="theme-popup__list">
-            {#each themes as { id, icon, label }}
+            {#each themes as { id, icon, label, link }}
                 <li>
                     <label for={id}>
                         <span class="theme-popup__icons">
-                            <i class={icon}></i>
+                            <a href={link}><i class={icon}></i></a>
                         </span>
                         <span>{label}</span>
                     </label>

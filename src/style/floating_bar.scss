@@ -1,6 +1,12 @@
 /* radio settings 👇 */
 
 .theme-popup {
+    a {
+        list-style: none;
+        text-decoration: none;
+        color:#827f7f;
+    }
+
     /* total */
     --total_text_color: #e0e0e0;
     // --total_font_family: Menlo, Roboto Mono, monospace;

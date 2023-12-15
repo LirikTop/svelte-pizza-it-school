@@ -1,16 +1,12 @@
 <script>
-	import axios from "axios";
 	import FiltrationList from "../FiltrationList.svelte";
 	import SorterList from "../SorterList.svelte";
 	import PizzaCart from "../PizzaCart.svelte";
 	import { onMount } from "svelte";
 	import FloatingComponent from "../FloatingComponent.svelte";
+	import {arrayPizza as originalArrayPizza} from "../dataBase/db_pizza.js"
 
-	let url = "http://localhost:3000/pizzas";
-	// let url = "https://raw.githubusercontent.com/LirikTop/Json_pizza/main/db.json";
-	// let url = "/.netlify/functions/db";
-
-	let arrayPizza = [];
+	let arrayPizza = [...originalArrayPizza];
 	let arrayFilter = [
 		{
 			name: "Всі",
@@ -43,74 +39,24 @@
 	$: updatePizzas(selectFilter, selectSort);
 
 	function updatePizzas(filter, sort) {
-		axios({
-			method: "get",
-			dataType: "json",
-			url: url,
-		})
-			.then((response) => {
-				let pizzas = response.data;
-				if (filter !== "") {
-					pizzas = pizzas.filter((pizza) =>
-						pizza.types.includes(Number(filter)),
-					);
-				}
-				switch (sort) {
-					case 0:
-						pizzas.sort((a, b) => b.rating - a.rating);
-						break;
-					case 1:
-						pizzas.sort((b, a) => b.price - a.price);
-						break;
-					case 2:
-						pizzas.sort((a, b) => a.name.localeCompare(b.name));
-						break;
-				}
-				arrayPizza = pizzas;
-			})
-			.catch((e) => {
-				console.warn(e);
-			});
-		// let newUrl = url;
-		// if (selectFilter !== "") {
-		// 	axios({
-		// 		method: "get",
-		// 		url: newUrl,
-		// 	})
-		// 		.then((response) => {
-		// 			arrayPizza = response.data.filter((pizza) =>
-		// 				pizza.types.includes(Number(filter)),
-		// 			);
-		// 		})
-		// 		.catch((e) => {
-		// 			console.warn(e);
-		// 		});
-		// }
-		// let partl = "&";
-		// if (selectFilter == "") {
-		// 	partl = "?";
-		// }
-		// switch (selectSort) {
-		// 	case 0:
-		// 		newUrl += partl + "_sort=rating&_order=desc";
-		// 		break;
-		// 	case 1:
-		// 		newUrl += partl + "_sort=price&_order=desc";
-		// 		break;
-		// 	case 2:
-		// 		newUrl += partl + "_sort=name&_order=asc";
-		// 		break;
-		// }
-		// axios({
-		// 	method: "get",
-		// 	url: newUrl,
-		// })
-		// 	.then((response) => {
-		// 		arrayPizza = response.data;
-		// 	})
-		// 	.catch((e) => {
-		// 		console.warn(e);
-		// 	});
+		let pizzas = [...originalArrayPizza];
+		if (filter !== "") {
+			pizzas = pizzas.filter((pizza) =>
+				pizza.types.includes(Number(filter)),
+			);
+		}
+		switch (sort) {
+			case 0:
+				pizzas.sort((a, b) => b.rating - a.rating);
+				break;
+			case 1:
+				pizzas.sort((b, a) => b.price - a.price);
+				break;
+			case 2:
+				pizzas.sort((a, b) => a.name.localeCompare(b.name));
+				break;
+		}
+		arrayPizza = pizzas;
 	}
 	function getSorter(e) {
 		selectSort = e.detail.value;
