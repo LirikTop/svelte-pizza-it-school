@@ -5,6 +5,11 @@
     import { cart } from "../store/store.js";
     import { onDestroy } from "svelte";
 
+    function clearCart() {
+        cart.set([]);
+        localStorage.setItem("pizzaCart", JSON.stringify([]));
+    }
+
     let cartList;
     let showDeliveryForm = false; // нова змінна стану для відображення форми доставки
 
@@ -50,7 +55,8 @@
                     <i class="fa-solid fa-cart-shopping" />
                     Корзина товарів
                 </div>
-                <div class="delete-all">
+                <!-- svelte-ignore a11y-click-events-have-key-events -->
+                <div class="delete-all" on:click={clearCart}>
                     <i class="fa-solid fa-trash" />
                     Видалити з корзини
                 </div>

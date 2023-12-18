@@ -4,11 +4,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "server": "json-server ./public/db.json",
+    "server": "json-server --watch ./public/db.json",
     "start": "sirv public --no-clear"
+    
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^24.0.0",
